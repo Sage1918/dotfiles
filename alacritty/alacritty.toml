@@ -1,0 +1,39 @@
+[window]
+dynamic_padding = true
+opacity = 0.90
+
+[colors.primary]
+background= "#000000"
+foreground= "#e6e1e4"
+
+[colors.bright]
+black = "#7885dc"
+blue = "#ea856c"
+cyan = "#b5bbef"
+green = "#f975db"
+magenta = "#3abbc6"
+red = "#7688f6"
+white = "#c2bc5f"
+yellow ="#eea4da"
+
+[env]
+TERM = "alacritty"
+
+[font]
+normal = { family = "mononoki NFM", style = "Regular"}
+size = 12.25
+
+[colors.normal]
+black = "#000000"
+blue = "#140f98"
+cyan = "#006176"
+green = "#118922"
+magenta = "#5e117f"
+red = "#dd4167"
+white = "#baabb5"
+yellow = "#d9b82e"
+
+[window.padding]
+x = 3
+y = 3
+
