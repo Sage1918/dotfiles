@@ -27,7 +27,12 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.undofile = true
 vim.opt.updatetime = 250
 vim.opt.completeopt = 'menuone,noselect'
-vim.opt.foldmethod = 'manual';
+vim.foldlevel = '99';
+
+-- Folding options
+vim.foldlevelstart = '99';
+vim.opt.foldcolumn = '1';
+vim.opt.foldenable = true
 
 -- Some keymaps that I might like
 vim.keymap.set('n', 'j', "v:count == 0? 'gj' : 'j'", { expr = true, silent = true })
@@ -51,7 +56,11 @@ require('lazy').setup({
   'tpope/vim-sleuth',
   'tpope/vim-surround',
   'tpope/vim-repeat',
-  {   -- Lsp
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async"
+  },
+  { -- Lsp
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'williamboman/mason.nvim', config = true },
@@ -195,6 +204,51 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 }, {})
+
+-- [[Configure nvim_ufo]]
+require("ufo").setup({
+  preview = {},
+  open_fold_hl_timeout = 0,
+  close_fold_kinds_for_ft = {},
+  enable_get_fold_virt_text = true,
+  fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = (' 󰁂 %d '):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+      local chunkText = chunk[1]
+      local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+      if targetWidth > curWidth + chunkWidth then
+        table.insert(newVirtText, chunk)
+      else
+        chunkText = truncate(chunkText, targetWidth - curWidth)
+        local hlGroup = chunk[2]
+        table.insert(newVirtText, { chunkText, hlGroup })
+        chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        -- str width returned from truncate() may less than 2nd argument, need padding
+        if curWidth + chunkWidth < targetWidth then
+          suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+        end
+        break
+      end
+      curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, { suffix, 'MoreMsg' })
+    return newVirtText
+  end,
+  provider_selector = function(_, _, _)
+    return { 'lsp', 'indent' }
+  end
+})
+
+vim.keymap.set('n', 'zK', function()
+  local windowId = require('ufo').peekFoldedLinesUnderCursor()
+  if not windowId then
+    vim.lsp.buf.hover()
+  end
+end, { desc = "Peek Fold" })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
@@ -428,6 +482,10 @@ require('neodev').setup()
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
