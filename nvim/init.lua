@@ -27,11 +27,11 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Some options I want
-vim.opt.clipboard = 'unnamedplus'
 vim.opt.undofile = true
 vim.opt.updatetime = 250
 vim.opt.completeopt = 'menuone,noselect'
-vim.foldlevel = '99';
+vim.opt.formatoptions:append "o/"
+vim.opt.scrolloff      = 5
 
 -- Folding options
 vim.foldlevelstart = '99';
@@ -225,7 +225,7 @@ require("ufo").setup({
   preview = {},
   open_fold_hl_timeout = 0,
   close_fold_kinds_for_ft = {},
-  enable_get_fold_virt_text = true,
+  enable_get_fold_virt_text = false,
   fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
     local suffix = (' 󰁂 %d '):format(endLnum - lnum)
