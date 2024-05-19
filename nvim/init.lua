@@ -1,42 +1,42 @@
 -- The config I made using kickstart vim github on 31-12-2023
 -- Leader key is space
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader          = ' '
+vim.g.maplocalleader     = ' '
 
 -- NvimTree
-vim.g.loaded_netrw = 1
+vim.g.loaded_netrw       = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Set Relative line number
-vim.opt.nu = true
-vim.opt.rnu = true
+vim.opt.nu               = true
+vim.opt.rnu              = true
 
 -- Tabs are 4 spaces now
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.tabstop          = 4
+vim.opt.softtabstop      = 4
+vim.opt.shiftwidth       = 4
+vim.opt.expandtab        = true
 
-vim.opt.smartindent = true
+vim.opt.smartindent      = true
 
-vim.opt.wrap = true
+vim.opt.wrap             = true
 
 -- Vim search options
-vim.opt.incsearch = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.opt.incsearch        = true
+vim.opt.ignorecase       = true
+vim.opt.smartcase        = true
 
 -- Some options I want
-vim.opt.undofile = true
-vim.opt.updatetime = 250
-vim.opt.completeopt = 'menuone,noselect'
+vim.opt.undofile         = true
+vim.opt.updatetime       = 250
+vim.opt.completeopt      = 'menuone,noselect'
+vim.opt.scrolloff        = 5
 vim.opt.formatoptions:append "o/"
-vim.opt.scrolloff      = 5
 
 -- Folding options
-vim.foldlevelstart = '99';
-vim.opt.foldcolumn = '1';
-vim.opt.foldenable = true
+vim.opt.foldlevelstart = 99;
+vim.opt.foldcolumn     = '1';
+vim.opt.foldenable     = true
 
 -- Some keymaps that I might like
 vim.keymap.set('n', 'j', "v:count == 0? 'gj' : 'j'", { expr = true, silent = true })
@@ -50,7 +50,7 @@ if not vim.loop.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable',     -- latest stable release
+    '--branch=stable', -- latest stable release
     lazypath,
   })
 end
@@ -87,9 +87,9 @@ require('lazy').setup({
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
-    opts = {}     -- this is equalent to setup({}) function
+    opts = {} -- this is equalent to setup({}) function
   },
-  {               -- Autocomplete
+  {           -- Autocomplete
     'hrsh7th/nvim-cmp',
     dependencies = {
       'L3MON4D3/LuaSnip',
@@ -390,7 +390,7 @@ vim.defer_fn(function()
       },--]]
       move = {
         enable = true,
-        set_jumps = true,         -- whether to set jumps in the jumplist
+        set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
           [']m'] = '@function.outer',
           [']]'] = '@class.outer',
