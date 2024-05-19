@@ -3,6 +3,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- NvimTree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Set Relative line number
 vim.opt.nu = true
 vim.opt.rnu = true
@@ -59,6 +63,17 @@ require('lazy').setup({
   {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async"
+  },
+  { -- NvimTree
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
   },
   { -- Lsp
     'neovim/nvim-lspconfig',
@@ -558,6 +573,12 @@ cmp.setup {
     { name = 'path' },
   },
 }
+
+-- [[ Configure nvim-tree]]
+require("nvim-tree").setup()
+vim.keymap.set("n", "<C-n>", function()
+  vim.cmd(":NvimTreeToggle")
+end, { desc = "Toggle nvim-tree" })
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
