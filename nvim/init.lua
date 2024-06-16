@@ -31,11 +31,14 @@ vim.opt.undofile         = true
 vim.opt.updatetime       = 250
 vim.opt.completeopt      = 'menuone,noselect'
 vim.opt.scrolloff        = 5
+vim.opt.showmode         = false
 vim.opt.formatoptions:append "o/"
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 -- Folding options
 vim.opt.foldlevelstart = 99;
-vim.opt.foldcolumn     = '1';
+vim.opt.foldcolumn     = '0';
 vim.opt.foldenable     = true
 
 -- Some keymaps that I might like
@@ -597,9 +600,6 @@ vim.keymap.set("n", "<C-n>", function()
   vim.cmd(":NvimTreeToggle")
 end, { desc = "Toggle nvim-tree" })
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.opt.showmode = true
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
