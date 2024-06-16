@@ -238,6 +238,7 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+  'vimwiki/vimwiki'
 }, {})
 
 -- [[Configure nvim_ufo]]
