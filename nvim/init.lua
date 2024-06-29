@@ -7,43 +7,13 @@ vim.g.maplocalleader     = ' '
 vim.g.loaded_netrw       = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Set Relative line number
-vim.opt.nu               = true
-vim.opt.rnu              = true
-
--- Tabs are 4 spaces now
-vim.opt.tabstop          = 4
-vim.opt.softtabstop      = 4
-vim.opt.shiftwidth       = 4
-vim.opt.expandtab        = true
-
-vim.opt.smartindent      = true
-
-vim.opt.wrap             = true
-
--- Vim search options
-vim.opt.incsearch        = true
-vim.opt.ignorecase       = true
-vim.opt.smartcase        = true
-
--- Some options I want
-vim.opt.undofile         = true
-vim.opt.updatetime       = 250
-vim.opt.completeopt      = 'menuone,noselect'
-vim.opt.scrolloff        = 5
-vim.opt.showmode         = false
-vim.opt.formatoptions:append "o/"
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-
--- Folding options
-vim.opt.foldlevelstart = 99;
-vim.opt.foldcolumn     = '0';
-vim.opt.foldenable     = true
 
 -- Some keymaps that I might like
 vim.keymap.set('n', 'j', "v:count == 0? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set('n', 'k', "v:count == 0? 'gk' : 'k'", { expr = true, silent = true })
+require 'options'
 
 -- Let's use lazy vim now instead of old packer
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
