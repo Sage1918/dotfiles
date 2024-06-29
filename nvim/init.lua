@@ -10,10 +10,8 @@ vim.g.loaded_netrwPlugin = 1
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
--- Some keymaps that I might like
-vim.keymap.set('n', 'j', "v:count == 0? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set('n', 'k', "v:count == 0? 'gk' : 'k'", { expr = true, silent = true })
 require 'options'
+require 'keymaps'
 
 -- Let's use lazy vim now instead of old packer
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
