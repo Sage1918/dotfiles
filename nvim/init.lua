@@ -602,7 +602,25 @@ cmp.setup {
 }
 
 -- [[ Configure nvim-tree]]
-require("nvim-tree").setup()
+require("nvim-tree").setup(
+  {
+    hijack_cursor = true,
+    actions       = {
+      change_dir = {
+        enable = true,
+        global = true
+      }
+    },
+    filters       = {
+      enable = true,
+      dotfiles = false,
+      git_ignored = false,
+    },
+    view          = {
+      relativenumber = true,
+    },
+  }
+)
 vim.keymap.set("n", "<C-n>", function()
   vim.cmd(":NvimTreeToggle")
 end, { desc = "Toggle nvim-tree" })
