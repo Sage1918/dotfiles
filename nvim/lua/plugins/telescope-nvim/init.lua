@@ -11,6 +11,14 @@ M = {
       end,
     },
   },
+  lazy = false,
+  opts = require 'plugins.telescope-nvim.setup',
+  config = function()
+    require('telescope').load_extension 'fzf'
+
+    -- Some builtin telescope stuff mapped to keybinds
+    require('plugins.telescope-nvim.keymaps')
+  end
 }
 
 return M
