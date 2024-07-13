@@ -5,9 +5,26 @@ M = {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  config = function()
-    require("nvim-tree").setup {}
-  end,
+  opts = {
+    hijack_cursor = true,
+    actions       = {
+      change_dir = {
+        enable = true,
+        global = true
+      }
+    },
+    filters       = {
+      enable = true,
+      dotfiles = false,
+      git_ignored = false,
+    },
+    view          = {
+      relativenumber = true,
+    },
+  },
+  keys = {
+    { '<C-n>', '<cmd>NvimTreeToggle<CR>', desc = "Toggle nvim-tree" }
+  }
 }
 
 return M
