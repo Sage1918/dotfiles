@@ -2,8 +2,8 @@ M = {
   'numToStr/Comment.nvim',
   opts = {
     toggler = {
-      line = '<C-/>',
-      block = '<leader><C-/>',
+      line = 'gcc',
+      block = 'gcb',
     },
   },
   lazy = false,
