@@ -9,6 +9,7 @@ local M = {
   require('plugins.nvim-tree'),
   require('plugins.nvim-treesitter'),
   require('plugins.nvim-ufo'),
+  require('plugins.oil-nvim'),
   require('plugins.telescope-nvim'),
   require('plugins.vim-dadbod-ui'),
   require('plugins.vim-fugitive'),
