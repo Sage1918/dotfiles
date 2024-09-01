@@ -11,6 +11,7 @@ local M = {
   require('plugins.nvim-ufo'),
   require('plugins.oil-nvim'),
   require('plugins.telescope-nvim'),
+  require('plugins.undotree'),
   require('plugins.vim-dadbod-ui'),
   require('plugins.vim-fugitive'),
   require('plugins.vim-repeat'),
