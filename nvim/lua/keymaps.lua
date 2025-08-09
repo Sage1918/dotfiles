@@ -5,3 +5,6 @@ vim.keymap.set('n', '<C-j>', ':cnext<CR>', { silent = true })
 vim.keymap.set('n', '<C-k>', ':cprev<CR>', { silent = true })
 
 vim.keymap.set('n', '<leader>nt', ':tabnew<CR>', { silent = true })
+
+vim.keymap.set('v', '<leader>y', '"+y', { silent = true })
+vim.keymap.set('n', '<leader>p', '"+p', { silent = true })
